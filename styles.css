@@ -1,0 +1,636 @@
+/* Custom Tailwind Configuration and Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --espresso-brown: #4B2E2B;
+    --cream-beige: #F5E6D3;
+    --caramel: #C68B59;
+    --soft-latte: #EBD5C3;
+    --dark-brown: #2C1810;
+}
+
+/* Tailwind Color Extensions */
+@layer utilities {
+    .text-cream {
+        @apply text-[#F5E6D3];
+    }
+    
+    .bg-cream {
+        @apply bg-[#F5E6D3];
+    }
+    
+    .text-espresso {
+        @apply text-[#4B2E2B];
+    }
+    
+    .bg-espresso {
+        @apply bg-[#4B2E2B];
+    }
+    
+    .text-caramel {
+        @apply text-[#C68B59];
+    }
+    
+    .bg-caramel {
+        @apply bg-[#C68B59];
+    }
+    
+    .bg-soft-latte {
+        @apply bg-[#EBD5C3];
+    }
+    
+    .text-dark-brown {
+        @apply text-[#2C1810];
+    }
+    
+    .bg-dark-brown {
+        @apply bg-[#2C1810];
+    }
+    
+    .border-caramel {
+        @apply border-[#C68B59];
+    }
+}
+
+/* Font Families */
+@layer components {
+    .font-playfair {
+        @apply font-['Playfair_Display'];
+    }
+    
+    .font-poppins {
+        @apply font-['Poppins'];
+    }
+}
+
+/* Glass Morphism Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 10px 13px rgba(0, 0, 0, 0.1);
+}
+
+.glass-effect:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Enhanced Glass Morphism Effect for Modal */
+.glass-effect-modal {
+    background: rgba(245, 230, 211, 0.85);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(198, 139, 89, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Button Styles */
+.btn-primary {
+    @apply bg-caramel text-cream font-poppins font-semibold rounded-full transition-all duration-300;
+    box-shadow: 0 4px 15px rgba(198, 139, 89, 0.3);
+}
+
+.btn-primary:hover {
+    @apply bg-espresso text-cream scale-105;
+    box-shadow: 0 8px 25px rgba(75, 46, 43, 0.4);
+}
+
+.btn-primary:active {
+    @apply scale-95;
+}
+
+.btn-secondary {
+    @apply bg-transparent text-espresso font-poppins font-semibold rounded-full border-2 border-caramel transition-all duration-300;
+}
+
+.btn-secondary:hover {
+    @apply bg-caramel text-cream;
+}
+
+/* Animations */
+@keyframes blob {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+@keyframes scale-up {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+}
+
+.animate-scale-up {
+    animation: scale-up 0.6s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Animation Delays */
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+.animation-delay-100 {
+    animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+    animation-delay: 400ms;
+}
+
+.animation-delay-500 {
+    animation-delay: 500ms;
+}
+
+/* Staggered Animation */
+.stagger-item {
+    animation: slide-up 0.8s ease-out forwards;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 100ms; }
+.stagger-item:nth-child(2) { animation-delay: 200ms; }
+.stagger-item:nth-child(3) { animation-delay: 300ms; }
+.stagger-item:nth-child(4) { animation-delay: 400ms; }
+.stagger-item:nth-child(5) { animation-delay: 500ms; }
+.stagger-item:nth-child(6) { animation-delay: 600ms; }
+.stagger-item:nth-child(7) { animation-delay: 700ms; }
+.stagger-item:nth-child(8) { animation-delay: 800ms; }
+
+/* Hero Content Animation */
+.hero-content {
+    animation: slide-in-left 1s ease-out forwards;
+}
+
+.hero-image {
+    animation: slide-in-right 1s ease-out forwards;
+}
+
+/* Feature Cards */
+.feature-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Menu Item Cards */
+.menu-item-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-item-card:hover {
+    transform: translateY(-12px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Navigation Link Underline Effect */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #C68B59, #C68B59);
+    transition: left 0.3s ease-out;
+}
+
+.nav-link:hover::after {
+    left: 0;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cream-beige);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--caramel);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--espresso-brown);
+}
+
+/* Form Inputs */
+input, textarea {
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 0 3px rgba(198, 139, 89, 0.1);
+}
+
+/* Add to Cart Button Animation */
+.add-to-cart {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart:hover {
+    transform: scale(1.1);
+}
+
+.add-to-cart::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.add-to-cart:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+/* Loading State */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 3px solid rgba(198, 139, 89, 0.3);
+    border-top-color: #C68B59;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Utility Classes */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+.duration-300 {
+    transition-duration: 300ms;
+}
+
+.duration-500 {
+    transition-duration: 500ms;
+}
+
+/* Text Gradient */
+.text-gradient {
+    background: linear-gradient(135deg, #C68B59 0%, #EBD5C3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hover Shadow Effects */
+.hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+.hover\:shadow-2xl:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Grid Responsive */
+@media (max-width: 640px) {
+    .grid-cols-1 {
+        @apply grid-cols-1;
+    }
+    
+    .md\:grid-cols-2 {
+        @apply grid-cols-1;
+    }
+    
+    .lg\:grid-cols-4 {
+        @apply grid-cols-1;
+    }
+}
+
+/* ============================================
+   Order Confirmation Modal Styles
+   ============================================ */
+
+/* Confirmation Card Fade-In Animation */
+@keyframes confirmation-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.confirmation-card {
+    animation: confirmation-fade-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    position: relative;
+    z-index: 10;
+}
+
+/* Toast Slide Up Animation */
+@keyframes toast-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-toast-slide-up {
+    animation: toast-slide-up 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Check Icon Bounce Animation */
+@keyframes check-bounce {
+    0% {
+        transform: scale(0) rotate(-45deg);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-check-bounce {
+    animation: check-bounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Coffee Cup Shake Animation */
+@keyframes cup-shake {
+    0%, 100% {
+        transform: rotate(0deg) translateX(0);
+    }
+    25% {
+        transform: rotate(-5deg) translateX(-2px);
+    }
+    50% {
+        transform: rotate(5deg) translateX(2px);
+    }
+    75% {
+        transform: rotate(-3deg) translateX(-1px);
+    }
+}
+
+.animate-cup-shake {
+    animation: cup-shake 2s ease-in-out infinite;
+}
+
+/* Light Confetti Animation */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(300px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #C68B59;
+    border-radius: 50%;
+    animation: confetti-fall linear forwards;
+}
+
+.confetti-piece.cream {
+    background: #F5E6D3;
+}
+
+.confetti-piece.green {
+    background: #10b981;
+}
+
+.confetti-piece.caramel {
+    background: #C68B59;
+}
+
+/* Pulse Animation for Check Background */
+@keyframes pulse-soft {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.1;
+        transform: scale(1.1);
+    }
+}
+
+.animate-pulse {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Modal Backdrop Blur Animation */
+#confirmationModal:not(.hidden) {
+    animation: fade-in 0.3s ease-out;
+}
+
+/* Order Items Scroll Animation */
+#confirmationOrderItems {
+    animation: fade-in 0.5s ease-out 0.2s both;
+}
+
+/* Thank You Quote Animation */
+.confirmation-card > div:nth-child(5) {
+    animation: slide-in-left 0.7s ease-out 0.3s both;
+}
+
+/* Action Buttons Animation */
+.confirmation-card > div:last-child {
+    animation: slide-up 0.6s ease-out 0.4s both;
+}
+
+/* Responsive Confirmation Modal */
+@media (max-width: 480px) {
+    .confirmation-card {
+        padding: 1.5rem;
+        max-width: 90vw;
+    }
+    
+    .confirmation-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .confirmation-card .btn-primary,
+    .confirmation-card .btn-secondary {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

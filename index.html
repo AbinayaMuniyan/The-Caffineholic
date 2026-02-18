@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Caffineholic - Premium Coffee Experiences</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="bg-gradient-to-br from-cream to-soft-latte text-dark-brown overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-espresso/80 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" id="logo">
+                <i class="fas fa-mug-hot text-caramel text-2xl"></i>
+                <span class="font-playfair text-2xl font-bold text-cream">The Caffineholic</span>
+            </div>
+            
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#home" class="nav-link text-cream hover:text-caramel transition">Home</a>
+                <a href="#menu" class="nav-link text-cream hover:text-caramel transition">Menu</a>
+                <a href="#about" class="nav-link text-cream hover:text-caramel transition">About</a>
+                <a href="#contact" class="nav-link text-cream hover:text-caramel transition">Contact</a>
+                <a href="#history" id="historyLink" class="nav-link text-cream hover:text-caramel transition">History</a>
+                <button id="orderBtn" class="btn-primary px-6 py-2">Order Now</button>
+            </div>
+            
+            <button id="mobileMenuBtn" class="md:hidden text-cream text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-espresso/95 pb-4 px-6">
+            <a href="#home" class="block py-2 text-cream hover:text-caramel transition">Home</a>
+            <a href="#menu" class="block py-2 text-cream hover:text-caramel transition">Menu</a>
+            <a href="#about" class="block py-2 text-cream hover:text-caramel transition">About</a>
+            <a href="#contact" class="block py-2 text-cream hover:text-caramel transition">Contact</a>
+            <button class="btn-primary w-full mt-4">Order Now</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen pt-24 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 opacity-30">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-caramel rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+            <div class="absolute top-40 right-10 w-72 h-72 bg-soft-latte rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-0 left-1/2 w-72 h-72 bg-espresso rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="hero-content space-y-6">
+                <h1 class="font-playfair text-6xl md:text-7xl font-bold text-espresso leading-tight">
+                    Brew Excellence,<br>
+                    <span class="text-caramel">Sip Bliss</span>
+                </h1>
+                <p class="font-poppins text-lg text-dark-brown/80 max-w-md leading-relaxed">
+                    Experience the finest artisan coffee crafted with passion. Every cup tells a story of quality, tradition, and innovation.
+                </p>
+                <div class="flex gap-4 pt-4">
+                    <button class="btn-primary px-8 py-3 text-lg hover:shadow-xl transition-all">
+                        Discover Menu 
+                    </button>
+                    <button class="btn-secondary px-8 py-3 text-lg hover:shadow-xl transition-all">
+                        Visit Us
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-image relative">
+                <div class="glass-effect rounded-3xl overflow-hidden">
+                    <img src="https://static.vecteezy.com/system/resources/previews/023/010/445/non_2x/the-cup-of-latte-coffee-with-heart-shaped-latte-art-and-ai-generated-free-photo.jpg" alt="Premium Coffee" class="w-full h-full object-cover animate-fade-in">
+                </div>
+                <div class="absolute -bottom-6 -right-6  w-24 h-24 rounded-full backdrop-blur-md">
+                    <p class="font-playfair text-2xl font-bold text-espresso">100% </p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order History Modal (replaces full-page history) -->
+    <div id="orderHistoryModal" class="hidden fixed inset-0 bg-black/15 flex items-center justify-center z-50 backdrop-blur-lg">
+        <div class="glass-effect-modal rounded-3xl p-8 max-w-md w-[92%] mx-4 max-h-[80vh] overflow-hidden">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-playfair text-2xl font-bold text-espresso">Order History</h3>
+                <button id="closeHistoryModal" aria-label="Close history" class="text-espresso text-2xl hover:text-caramel transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div id="orderHistoryBody" class="overflow-y-auto max-h-[68vh] space-y-3 pr-2">
+                <!-- Compact history rows injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="py-20 px-6 bg-espresso/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card glass-effect rounded-2xl p-8 text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-caramel/20 rounded-full">
+            
+                    </div>
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.FyQihSAYruNlUDt6HiLW8wHaEv?w=228&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" alt="Premium Beans" class="w-16 h-16 object-cover rounded-full mx-auto mt-2">
+                    <h3 class="font-playfair text-2xl font-semibold text-espresso">Premium Beans</h3>
+                    <p class="text-dark-brown/70 leading-relaxed">Sourced from the world's finest coffee regions, roasted to perfection.</p>
+                </div>
+
+                <div class="feature-card glass-effect rounded-2xl p-8 text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-caramel/20 rounded-full">
+                    </div>
+                    <img src="https://cdn.sanity.io/images/0znjtmk5/production/8a2ab2829d5a0ee4a8bf5f0a2c42f7f24237127d-1080x787.png?w=1200&q=85&auto=format" alt="Master Baristas" class="w-24 h-24 object-cover rounded-full mx-auto mt-4">
+                    <h3 class="font-playfair text-2xl font-semibold text-espresso">Master Baristas</h3>
+                    <p class="text-dark-brown/70 leading-relaxed">Expert craftsmanship in every pour, every shot, every creation.</p>
+                </div>
+
+                <div class="feature-card glass-effect rounded-2xl p-8 text-center space-y-4 hover:shadow-xl transition-all">
+                    <div class="inline-flex items-center justify-center w-16 h-16 bg-caramel/20 rounded-full">
+                    </div>
+                    <img src="https://purepng.com/public/uploads/medium/purepng.com-coffee-beansfood-coffee-beans-grains-941524619810to5bo.png" alt="Crafted with Love" class="w-24 h-24 object-cover rounded-full mx-auto mt-4">
+                    <h3 class="font-playfair text-2xl font-semibold text-espresso">Made With Love</h3>
+                    <p class="text-dark-brown/70 leading-relaxed">Passion-driven excellence in every cup we create for you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-5xl font-bold text-espresso mb-4">Our Collections</h2>
+                <p class="text-lg text-dark-brown/70">Handcrafted beverages for every moment</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Menu Items -->
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.QNOyOXl_dVSSxvWEw1IyHgHaHa?w=179&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" alt="Espresso" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Espresso Shot</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Pure, concentrated excellence</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$3.50</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://img.freepik.com/premium-photo/hot-cappuccino-coffee_758367-5219.jpg" alt="Cappuccino" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Cappuccino</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Creamy, luxurious perfection</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$4.75</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://yummynotes.net/wp-content/uploads/2021/10/Homemade-Caramel-Latte-Recipe-2.jpg" alt="Latte" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Caramel Latte</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Sweet, smooth indulgence</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$5.25</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.ENuX66asmzR4K6R5Z3N5cgHaE8?w=186&h=124&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" alt="Cold Brew" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Cold Brew</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Smooth, refreshing chill</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$4.50</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://mountainprovincecoffee.com/wp-content/uploads/2024/02/How-to-Make-an-Espresso-Macchiato.jpg" alt="Macchiato" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Macchiato</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Bold with a hint of milk</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$4.25</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://tse4.mm.bing.net/th/id/OIP.N8tyswTXwXBCXBfMQxaoKgHaHa?w=183&h=183&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" alt="Mocha" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Mocha Bliss</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Coffee meets chocolate</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$5.50</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="data:image/webp;base64,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" alt="Americano" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Americano</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Classic strength</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$3.99</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-card glass-effect rounded-2xl overflow-hidden group hover:shadow-2xl transition-all">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.IEErv6hjp_7p-oIWHTDo2gHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Flat White" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Flat White</h3>
+                        <p class="text-dark-brown/70 text-sm mb-4">Velvety, sophisticated blend</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-caramel font-bold text-lg">$5.00</span>
+                            <button class="add-to-cart bg-caramel text-cream rounded-full w-10 h-10 flex items-center justify-center hover:bg-espresso transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 bg-espresso/5">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="glass-effect rounded-3xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=600&h=600&fit=crop" alt="About Us" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h2 class="font-playfair text-5xl font-bold text-espresso">Why We're Different</h2>
+                <p class="text-lg text-dark-brown/80 leading-relaxed">
+                    Since 2010, The Caffineholic has been dedicated to bringing you more than just coffee. We're passionate about creating an experience—a moment of pure, uninterrupted bliss in your day.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-caramel/20">
+                                <i class="fas fa-check text-caramel text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Ethically Sourced</h3>
+                            <p class="text-dark-brown/70">Direct relationships with farmers ensuring fair trade and sustainability.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-caramel/20">
+                                <i class="fas fa-check text-caramel text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Expert Roasting</h3>
+                            <p class="text-dark-brown/70">Small-batch roasting to highlight unique flavor profiles of each origin.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-caramel/20">
+                                <i class="fas fa-check text-caramel text-lg"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-xl font-semibold text-espresso mb-2">Cozy Community</h3>
+                            <p class="text-dark-brown/70">A gathering place where coffee lovers connect and create memories.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-playfair text-5xl font-bold text-espresso mb-4">Get In Touch</h2>
+                <p class="text-lg text-dark-brown/70">Visit us or reach out anytime</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="glass-effect rounded-2xl p-8 text-center space-y-4">
+                    <i class="fas fa-map-marker-alt text-caramel text-3xl"></i>
+                    <h3 class="font-playfair text-xl font-semibold text-espresso">Location</h3>
+                    <p class="text-dark-brown/70">123 Coffee lane<br>RangaNagar, Avinashi 641654</p>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 text-center space-y-4">
+                    <i class="fas fa-phone text-caramel text-3xl"></i>
+                    <h3 class="font-playfair text-xl font-semibold text-espresso">Phone</h3>
+                    <p class="text-dark-brown/70">9655604107<br>Mon - Sun, 7am - 9pm</p>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-8 text-center space-y-4">
+                    <i class="fas fa-envelope text-caramel text-3xl"></i>
+                    <h3 class="font-playfair text-xl font-semibold text-espresso">Email</h3>
+                    <p class="text-dark-brown/70">hello@caffineholic.com<br>support@caffineholic.com</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="glass-effect rounded-3xl p-8 md:p-12">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-espresso font-semibold mb-2">Name</label>
+                            <input type="text" required class="w-full bg-cream/50 border-2 border-caramel/30 rounded-lg px-4 py-3 focus:outline-none focus:border-caramel transition" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label class="block text-espresso font-semibold mb-2">Email</label>
+                            <input type="email" required class="w-full bg-cream/50 border-2 border-caramel/30 rounded-lg px-4 py-3 focus:outline-none focus:border-caramel transition" placeholder="your@email.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-espresso font-semibold mb-2">Subject</label>
+                        <input type="text" required class="w-full bg-cream/50 border-2 border-caramel/30 rounded-lg px-4 py-3 focus:outline-none focus:border-caramel transition" placeholder="How can we help?">
+                    </div>
+                    <div>
+                        <label class="block text-espresso font-semibold mb-2">Message</label>
+                        <textarea required class="w-full bg-cream/50 border-2 border-caramel/30 rounded-lg px-4 py-3 focus:outline-none focus:border-caramel transition h-32 resize-none" placeholder="Your message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary w-full py-3 text-lg">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-espresso text-cream py-12 px-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h3 class="font-playfair text-lg font-bold mb-4">The Caffineholic</h3>
+                <p class="text-cream/70 text-sm">Crafting premium coffee experiences since 2010.</p>
+            </div>
+            <div>
+                <h4 class="font-playfair font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-cream/70 text-sm">
+                    <li><a href="#" class="hover:text-caramel transition">Menu</a></li>
+                    <li><a href="#" class="hover:text-caramel transition">About Us</a></li>
+                    <li><a href="#" class="hover:text-caramel transition">Locations</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-playfair font-semibold mb-4">Follow Us</h4>
+                <div class="flex gap-4">
+                    <a href="#" class="text-cream/70 hover:text-caramel transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-cream/70 hover:text-caramel transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-cream/70 hover:text-caramel transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-cream/70 hover:text-caramel transition"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-playfair font-semibold mb-4">Newsletter</h4>
+                <div class="flex bg-cream/10 rounded-lg overflow-hidden">
+                    <input type="email" placeholder="Your email" class="bg-transparent flex-1 px-4 py-2 text-sm outline-none">
+                    <button class="bg-caramel text-espresso px-4 py-2 hover:bg-caramel/90 transition"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-cream/20 pt-8 text-center text-cream/60 text-sm">
+            <p>&copy; 2024 The Caffineholic. All rights reserved. | Crafted with <span class="text-caramel">❤</span> for coffee lovers.</p>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="hidden fixed inset-0 bg-black/15 flex items-center justify-center z-50 backdrop-blur-lg">
+        <div class="glass-effect-modal rounded-3xl p-8 max-w-md w-full mx-4 space-y-6">
+            <div class="flex justify-between items-center">
+                <h3 class="font-playfair text-2xl font-bold text-espresso">Your Order</h3>
+                <button id="closeModal" class="text-espresso text-2xl hover:text-caramel transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" class="space-y-3 max-h-72 overflow-y-auto">
+                <p class="text-dark-brown/60 text-center">No items in cart</p>
+            </div>
+            
+            <div class="border-t border-espresso/20 pt-4 space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-dark-brown font-semibold">Subtotal:</span>
+                    <span class="text-espresso font-bold" id="subtotal">$0.00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-dark-brown font-semibold">Tax (8%):</span>
+                    <span class="text-espresso font-bold" id="tax">$0.00</span>
+                </div>
+                <div class="flex justify-between items-center text-lg">
+                    <span class="font-playfair text-espresso font-bold">Total:</span>
+                    <span class="text-caramel font-bold" id="total">$0.00</span>
+                </div>
+            </div>
+            
+            <button id="proceedCheckoutBtn" class="btn-primary w-full py-3">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div id="confirmationModal" class="hidden fixed inset-0 bg-black/15 flex items-center justify-center z-50 backdrop-blur-lg">
+        <div class="confirmation-card glass-effect-modal rounded-3xl p-5 max-w-md w-full mx-4 space-y-3 relative max-h-[85vh] overflow-y-auto">
+            <!-- Confetti Animation Container -->
+            <div id="confetti" class="absolute inset-0 pointer-events-none rounded-3xl overflow-hidden"></div>
+            
+            <!-- Green Check Icon -->
+            <div class="flex justify-center pt-2">
+                <div class="relative">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg animate-check-bounce">
+                        <i class="fas fa-check text-white text-2xl"></i>
+                    </div>
+                    <div class="absolute inset-0 w-12 h-12 bg-green-400 rounded-full animate-pulse opacity-30"></div>
+                </div>
+            </div>
+
+            <!-- Heading -->
+            <div class="text-center space-y-1">
+                <h2 class="font-playfair text-2xl font-bold text-espresso">Order Confirmed!</h2>
+                <p class="text-xs text-dark-brown/70 flex items-center justify-center gap-1">
+                    <i class="fas fa-mug-hot text-caramel animate-cup-shake"></i>
+                    Your coffee is being prepared ☕
+                </p>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="bg-cream/80 rounded-2xl p-3 space-y-2 border border-caramel/20">
+                <h3 class="font-playfair font-semibold text-espresso text-sm mb-2">Order Summary</h3>
+                <div id="confirmationOrderItems" class="space-y-1 max-h-32 overflow-y-auto text-xs">
+                    <!-- Items will be populated here -->
+                </div>
+                <div class="border-t border-caramel/30 pt-2 space-y-1">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-dark-brown/70">Subtotal:</span>
+                        <span class="text-espresso font-semibold" id="confirmSubtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-dark-brown/70">Tax:</span>
+                        <span class="text-espresso font-semibold" id="confirmTax">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-sm font-bold border-t border-caramel/30 pt-1">
+                        <span class="text-espresso">Total:</span>
+                        <span class="text-caramel" id="confirmTotal">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estimated Time - Clickable -->
+            <button id="readyTimeBtn" class="w-full bg-caramel/10 hover:bg-caramel/20 rounded-xl p-3 text-center border border-caramel/20 transition-all cursor-pointer">
+                <p class="text-dark-brown/70 text-xs mb-1">Ready Time</p>
+                <p class="font-playfair text-base font-bold text-espresso">
+                    <i class="fas fa-hourglass-end text-caramel mr-1"></i>Ready in 15 min
+                </p>
+            </button>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-2 gap-3 pt-1">
+                <button id="backToHomeBtn" class="btn-secondary py-2 rounded-lg font-semibold text-xs transition-all hover:shadow-lg">
+                    <i class="fas fa-home mr-1"></i>Home
+                </button>
+                <button id="orderMoreBtn" class="btn-primary py-2 rounded-lg font-semibold text-xs transition-all hover:shadow-lg">
+                    <i class="fas fa-plus-circle mr-1"></i>Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Toast Mini-Card -->
+    <div id="thankYouToast" class="hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[60] max-w-[420px] w-[90%] pointer-events-auto">
+        <div class="glass-effect-modal rounded-2xl p-3 shadow-lg border border-caramel/20 bg-gradient-to-br from-cream to-soft-latte space-y-2 relative animate-toast-slide-up">
+            <div class="flex justify-between items-start gap-2">
+                <div class="flex-1 text-center">
+                    <p class="font-playfair text-sm italic text-dark-brown leading-relaxed">
+                        <span class="text-caramel font-bold">"</span>Happiness is brewing at The Caffineholic.<span class="text-caramel font-bold">"</span>
+                    </p>
+                    <p class="text-xs text-dark-brown/60 mt-2">☕ Thank you for your order!</p>
+                </div>
+                <button id="closeToastBtn" class="text-dark-brown/40 hover:text-dark-brown transition flex-shrink-0 pt-1">
+                    <i class="fas fa-times text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
